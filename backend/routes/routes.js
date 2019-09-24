@@ -1,7 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const db = require("../db/dbHelper");
 
-router.get("/notes", async (req, res) => {});
+router.get("/notes", async (req, res) => {
+  try {
+    const allNotes = await db.getNotes();
+    res.status(201).json({ allNotes });
+  } catch (err) {
+    res.status(501).json({ message: err });
+  }
+});
 
 router.post("/notes/add", async (req, res) => {
   try {
