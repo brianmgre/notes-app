@@ -1,4 +1,5 @@
 import axios from "axios";
+import allNotes from "../components/allNotes";
 
 export const ADD_NOTE = "ADD_NOTE";
 export const EDIT_NOTE = "EDIT_NOTE";
@@ -61,7 +62,7 @@ export function handleDeleteNote(note) {
 export function handleData() {
   return dispatch => {
     return axios.get(`${url}/api/notes`).then(res => {
-      console.log(res);
+      console.log(typeof res.data.allNotes);
       dispatch(dataRequest(res.data.allNotes));
     });
   };

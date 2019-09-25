@@ -26,10 +26,7 @@ export default function notes(state = [], action) {
       return state.filter(note => note._id !== !action._id);
 
     case DATA_REQUEST:
-      return {
-        ...state,
-        ...action.notes
-      };
+      return [...action.notes];
 
     default:
       return state;

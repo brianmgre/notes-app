@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 
 const store = createStore(reducer, middleware);
-console.log("state", store.getState());
+console.log("state", store);
 ReactDOM.render(
   <Provider store={store}>
     <App />
