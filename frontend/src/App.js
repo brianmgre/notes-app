@@ -1,9 +1,16 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./App.css";
+import { handleData } from "./actions/notes";
 
-function App() {
-  return <div className="App">heyo</div>;
+class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(handleData());
+  }
+
+  render() {
+    return <div className="App">heyo</div>;
+  }
 }
 
-export default App;
+export default connect()(App);
