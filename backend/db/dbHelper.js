@@ -21,7 +21,7 @@ module.exports = {
       (note.title = newNote.title), (note.body = newNote.body);
 
       const saveNote = await note.save();
-
+      console.log("saved from mongo", saveNote);
       if (saveNote) {
         return saveNote;
       }

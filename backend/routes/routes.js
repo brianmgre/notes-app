@@ -14,6 +14,9 @@ router.get("/notes", async (req, res) => {
 router.post("/notes/add", async (req, res) => {
   try {
     const { title, body } = req.body;
+    const savedNote = await db.addNote(req.body);
+    console.log(savedNote);
+    res.status(201).json({ savedNote });
   } catch (err) {
     res.status(500).json({ message: err });
   }
