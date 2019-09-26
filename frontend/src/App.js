@@ -5,7 +5,7 @@ import "./App.css";
 import { handleData } from "./actions/notes";
 import AllNotes from "./components/allNotes";
 import Note from "./components/note";
-import AddNote from "./components/addNote";
+import NoteForm from "./components/noteForm";
 
 class App extends Component {
   componentDidMount() {
@@ -23,7 +23,7 @@ class App extends Component {
             <div>
               <Route exact path="/" component={AllNotes} />
               <Route path="/notes/:id" component={Note} />
-              <Route path="/new-note" component={AddNote} />
+              <Route path="/new-note" component={NoteForm} />
             </div>
           )}
         </div>

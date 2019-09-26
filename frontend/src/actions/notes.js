@@ -49,10 +49,22 @@ export function handleAddNote(note) {
 }
 
 export function handleDeleteNote(note) {
+  console.log("hit");
   return dispatch => {
-    dispatch(deleteNote(note.id));
-    return axios.delete().catch(() => {
+    dispatch(deleteNote(note._id));
+    return axios.delete(`${url}/api/notes/${note._id}`).catch(() => {
       dispatch(addNote(note));
+      alert("error");
+    });
+  };
+}
+
+export function handleEditNote(note) {
+  console.log("hit", note);
+  return dispatch => {
+    dispatch(editNote(note));
+    return axios.put(`${url}/api/notes/${note._id}`, note).catch(() => {
+      dispatch(editNote(note));
       alert("error");
     });
   };
