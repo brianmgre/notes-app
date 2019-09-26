@@ -7,6 +7,9 @@ const AllNotes = props => {
 
   return (
     <div>
+      <Link to="/new-note">
+        <p>add note</p>
+      </Link>
       all notes
       {notes.map(note => (
         <Link to={`notes/${note._id}`} key={note._id}>

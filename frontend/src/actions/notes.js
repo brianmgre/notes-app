@@ -1,5 +1,4 @@
 import axios from "axios";
-import allNotes from "../components/allNotes";
 
 export const ADD_NOTE = "ADD_NOTE";
 export const EDIT_NOTE = "EDIT_NOTE";
@@ -39,11 +38,12 @@ function dataRequest(notes) {
 export function handleAddNote(note) {
   return dispatch => {
     return axios
-      .post()
-      .then(() => {
-        dispatch(addNote(note));
+      .post(`${url}/api/notes/add`, note)
+      .then(res => {
+        console.log("saved note", res.data.savedNote);
+        dispatch(addNote(res.data.savedNote));
       })
-      .catch(() => {
+      .catch(err => {
         alert("error");
       });
   };
