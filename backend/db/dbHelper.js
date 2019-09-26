@@ -34,7 +34,7 @@ module.exports = {
   deleteNote: async id => {
     try {
       const deleteNote = await Notes.deleteOne({ _id: `${id}` });
-
+      console.log("delete from db", deleteNote);
       if (deleteNote.n === 1) {
         return deleteNote;
       }

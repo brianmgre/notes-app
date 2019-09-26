@@ -4,13 +4,13 @@ const Schema = mongoose.Schema;
 const NoteSchema = Schema({
   title: {
     type: String,
-    require: true,
-    max: 30,
+    required: true,
+    max: 100,
     unique: false
   },
   body: {
     type: String,
-    require: true
+    required: true
   }
 });
 

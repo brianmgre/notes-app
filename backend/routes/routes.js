@@ -33,6 +33,9 @@ router.put("/notes/:id", async (req, res) => {
 router.delete("/notes/:id", async (req, res) => {
   try {
     const { id } = req.params;
+    const deletedCount = await db.deleteNote(id);
+    console.log("delete from route", deletedCount);
+    res.status(201).json(deletedCount.n);
   } catch (err) {
     res.status(501).json({ message: err });
   }
