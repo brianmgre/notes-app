@@ -40,7 +40,6 @@ export function handleAddNote(note) {
     return axios
       .post(`${url}/api/notes/add`, note)
       .then(res => {
-        console.log("saved note", res.data.savedNote);
         dispatch(addNote(res.data.savedNote));
       })
       .catch(err => {
@@ -62,7 +61,6 @@ export function handleDeleteNote(note) {
 export function handleData() {
   return dispatch => {
     return axios.get(`${url}/api/notes`).then(res => {
-      console.log(typeof res.data.allNotes);
       dispatch(dataRequest(res.data.allNotes));
     });
   };

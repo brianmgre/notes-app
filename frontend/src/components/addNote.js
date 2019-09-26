@@ -13,9 +13,12 @@ class AddNote extends Component {
   };
 
   saveNote = e => {
+    const { title, body } = this.state;
     e.preventDefault();
-    this.props.history.push("/");
-    this.props.dispatch(handleAddNote(this.state));
+    if (title !== "" && body !== "") {
+      this.props.history.push("/");
+      this.props.dispatch(handleAddNote(this.state));
+    }
   };
 
   changeHandler = e => {
@@ -31,6 +34,7 @@ class AddNote extends Component {
             placeholder="title"
             name="title"
             type="text"
+            required
             value={this.state.title}
             onChange={this.changeHandler}
           />
@@ -38,6 +42,7 @@ class AddNote extends Component {
             placeholder="Note"
             name="body"
             type="text"
+            required
             value={this.state.body}
             onChange={this.changeHandler}
           />
