@@ -1,10 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { handleDeleteNote } from "../actions/notes";
 
 const AllNotes = props => {
   const { notes } = props;
 
+  const clickHandler = note => {
+    console.log("click", note);
+    props.dispatch(handleDeleteNote(note));
+  };
   return (
     <div>
       <Link to="/new-note">
@@ -12,10 +17,13 @@ const AllNotes = props => {
       </Link>
       all notes
       {notes.map(note => (
-        <Link to={`notes/${note._id}`} key={note._id}>
-          <p>{note.title}</p>
-          <p>{note.body}</p>
-        </Link>
+        <React.Fragment key={note._id}>
+          <Link to={`notes/${note._id}`}>
+            <p>{note.title}</p>
+            <p>{note.body}</p>
+          </Link>
+          <button onClick={() => clickHandler(note)}>delete</button>
+        </React.Fragment>
       ))}
     </div>
   );

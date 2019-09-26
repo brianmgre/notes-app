@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import EditNote from "./editNote";
+import NoteForm from "./noteForm";
+
 class Note extends Component {
   state = {
     edit: false
@@ -23,8 +24,7 @@ class Note extends Component {
     if (edit) {
       return (
         <div>
-          <p onClick={this.toggleEdit}>Edit Note</p>
-          <EditNote id={note._id} />
+          <NoteForm toggle={this.toggleEdit} />
         </div>
       );
     } else {

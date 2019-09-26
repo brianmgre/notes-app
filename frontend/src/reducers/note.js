@@ -12,10 +12,11 @@ export default function notes(state = [], action) {
 
     case EDIT_NOTE:
       return state.map(note => {
-        if (note._id === action._id) {
+        const { _id, title, body } = action.note;
+        if (note._id === _id) {
           return Object.assign({}, note, {
-            title: note.title,
-            body: note.body
+            title: title,
+            body: body
           });
         } else {
           return note;
@@ -23,7 +24,7 @@ export default function notes(state = [], action) {
       });
 
     case DELETE_NOTE:
-      return state.filter(note => note._id !== !action._id);
+      return state.filter(note => note._id !== action.id);
 
     case DATA_REQUEST:
       return [...action.notes];
