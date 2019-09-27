@@ -147,12 +147,14 @@ html {
 }
 html,
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "source-sans-pro", "sans-serif";
+  background-color: #4cb649;
 }
 
 h1 {
   font-size: 3.4rem;
   font-weight: bold;
+  color: white;
 }
 
 h2 {
@@ -161,7 +163,13 @@ h2 {
   font-weight: bold;
 }
 
+h3 {
+  font-size: 2rem;
+  line-height: 36px;
+  font-weight: bold;
+}
+
 p {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   line-height: 26px;
 }
