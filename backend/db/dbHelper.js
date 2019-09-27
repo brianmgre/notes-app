@@ -20,11 +20,7 @@ module.exports = {
       let note = new Notes();
       (note.title = newNote.title), (note.body = newNote.body);
 
-      const saveNote = await note.save();
-      console.log("saved from mongo", saveNote);
-      if (saveNote) {
-        return saveNote;
-      }
+      return await note.save();
     } catch (err) {
       return err;
     }
@@ -33,11 +29,20 @@ module.exports = {
   //deletes one note
   deleteNote: async id => {
     try {
-      const deleteNote = await Notes.deleteOne({ _id: `${id}` });
-      console.log("delete from db", deleteNote);
-      if (deleteNote.n === 1) {
-        return deleteNote;
-      }
+      return await Notes.deleteOne({ _id: `${id}` });
+    } catch (err) {
+      return err;
+    }
+  },
+
+  //edits note
+  editNote: async editedNote => {
+    try {
+      const { _id, title, body } = editedNote;
+      return await Notes.updateOne(
+        { _id: `${_id}` },
+        { $set: { title: title, body: body } }
+      );
     } catch (err) {
       return err;
     }

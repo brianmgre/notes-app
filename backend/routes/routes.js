@@ -14,9 +14,11 @@ router.get("/notes", async (req, res) => {
 router.post("/notes/add", async (req, res) => {
   try {
     const { title, body } = req.body;
-    const savedNote = await db.addNote(req.body);
-    console.log(savedNote);
-    res.status(201).json({ savedNote });
+    if (title && body) {
+      const savedNote = await db.addNote(req.body);
+
+      res.status(201).json({ savedNote });
+    }
   } catch (err) {
     res.status(500).json({ message: err });
   }
@@ -24,7 +26,15 @@ router.post("/notes/add", async (req, res) => {
 
 router.put("/notes/:id", async (req, res) => {
   try {
-    const { id } = req.params;
+    const { title, body } = req.body;
+    if (title && body) {
+      const updatedNote = await db.editNote(req.body);
+      if (updatedNote.n === 1) {
+        return updatedNote.n;
+      } else {
+        res.status(500).json({ message: updatedNote });
+      }
+    }
   } catch (err) {
     res.status(500).json({ message: err });
   }
@@ -34,8 +44,12 @@ router.delete("/notes/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const deletedCount = await db.deleteNote(id);
-    console.log("delete from route", deletedCount);
-    res.status(201).json(deletedCount.n);
+
+    if (deletedCount.n === 1) {
+      res.status(201).json(deletedCount.n);
+    } else {
+      res.status(501).json({ message: deletedCount });
+    }
   } catch (err) {
     res.status(501).json({ message: err });
   }
