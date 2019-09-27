@@ -1,6 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleAddNote, handleEditNote } from "../actions/notes";
+import { openModal } from "../actions/modal";
+import TextField from "@material-ui/core/TextField";
+import withStyles from "@material-ui/core/styles/withStyles";
+
+const styles = {
+  formContainer: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    alignItems: "center",
+    padding: "49px 20px"
+  },
+
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    width: "80%"
+  },
+
+  formInputs: {
+    padding: "10px"
+  }
+};
 
 class NoteForm extends Component {
   state = {
@@ -18,11 +41,13 @@ class NoteForm extends Component {
     }
   }
 
+  modalOpen = () => {
+    this.props.dispatch(openModal());
+  };
+
   handleCancel = e => {
     e.preventDefault();
-    return this.props.toggle
-      ? this.props.toggle()
-      : this.props.history.push("/");
+    return this.props.toggle ? this.props.toggle() : this.modalOpen();
   };
 
   saveNote = e => {
@@ -39,9 +64,10 @@ class NoteForm extends Component {
       dispatch(handleEditNote(editedNote));
       toggle();
     } else {
+      const { dispatch } = this.props;
       if (title !== "" && body !== "") {
-        this.props.history.push("/");
-        this.props.dispatch(handleAddNote(this.state));
+        this.modalOpen();
+        dispatch(handleAddNote(this.state));
       }
     }
   };
@@ -51,27 +77,32 @@ class NoteForm extends Component {
   };
 
   render() {
-    const { note } = this.props;
-    console.log("state", this.state);
+    const { classes } = this.props;
     return (
-      <div>
-        <h1>Add Something Inspiring!</h1>
-        <form onSubmit={this.saveNote}>
-          <input
+      <div className={classes.formContainer}>
+        <h1 className={classes.formInputs}>Add Something Inspiring!</h1>
+        <form onSubmit={this.saveNote} className={classes.form}>
+          <TextField
             placeholder="title"
             name="title"
             type="text"
             required
             value={this.state.title}
+            maxLength="50"
             onChange={this.changeHandler}
+            className={classes.formInputs}
           />
-          <input
+          <TextField
             placeholder="Note"
             name="body"
             type="text"
             required
+            variant="outlined"
+            multiline
+            rowsMax="6"
             value={this.state.body}
             onChange={this.changeHandler}
+            className={classes.formInputs}
           />
           <button type="submit">Save</button>
           <button onClick={this.handleCancel}>Cancel</button>
@@ -96,4 +127,4 @@ const mapStateToProps = ({ notes }) => {
   }
 };
 
-export default connect(mapStateToProps)(NoteForm);
+export default connect(mapStateToProps)(withStyles(styles)(NoteForm));
