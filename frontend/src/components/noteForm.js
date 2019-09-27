@@ -4,24 +4,102 @@ import { handleAddNote, handleEditNote } from "../actions/notes";
 import { openModal } from "../actions/modal";
 import TextField from "@material-ui/core/TextField";
 import withStyles from "@material-ui/core/styles/withStyles";
+import { Paper } from "@material-ui/core";
+import Icon from "@material-ui/core/Icon";
 
-const styles = {
+export const styles = {
   formContainer: {
     display: "flex",
     flexDirection: "column",
     width: "100%",
     alignItems: "center",
-    padding: "49px 20px"
+    padding: "50px"
   },
 
   form: {
     display: "flex",
     flexDirection: "column",
-    width: "80%"
+    width: "80%",
+    padding: 50
   },
 
   formInputs: {
-    padding: "10px"
+    padding: "10px",
+    whiteSpace: "pre-line"
+  },
+
+  editIcon: {
+    fontSize: 20,
+    "&:hover": {
+      cursor: "pointer",
+      color: "#4cb649"
+    },
+    textAlign: "end"
+  },
+
+  formHeader: {
+    color: "#4cb649"
+  },
+
+  backIcon: {
+    fontSize: 29,
+    "&:hover": {
+      cursor: "pointer",
+      color: "#4cb649"
+    },
+    width: "100%",
+    textAlign: "start"
+  },
+
+  resize: {
+    fontSize: "1.8rem",
+    lineHeight: 1.5
+  },
+  saveCloseIcon: {
+    fontSize: 29,
+    color: "#4cb649",
+    "&:hover": {
+      cursor: "pointer",
+      color: "#4cb649"
+    },
+    width: "100%",
+    textAlign: "center"
+  },
+  iconContainer: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    paddingTop: 20
+  },
+  saveIcon: {
+    fontSize: 20,
+    color: "#4cb649",
+    backgroundColor: "white",
+    width: "152px",
+    borderRadius: "5px",
+    border: "1px solid #4cb649",
+    padding: 7,
+    "&:hover": {
+      cursor: "pointer",
+      color: "white",
+      backgroundColor: "#4cb649",
+      border: "1px solid white"
+    }
+  },
+
+  closeIcon: {
+    fontSize: 20,
+    color: "#fb8400",
+    backgroundColor: "white",
+    borderRadius: "5px",
+    width: "152px",
+    border: "1px solid #fb8400",
+    padding: 7,
+    "&:hover": {
+      cursor: "pointer",
+      color: "white",
+      backgroundColor: "#fb8400",
+      border: "1px solid white"
+    }
   }
 };
 
@@ -79,8 +157,11 @@ class NoteForm extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.formContainer}>
-        <h1 className={classes.formInputs}>Add Something Inspiring!</h1>
+      <Paper className={classes.formContainer}>
+        <Icon className={classes.backIcon} onClick={this.handleCancel}>
+          arrow_back
+        </Icon>
+        <h1 className={classes.formHeader}>Add Something Inspiring!</h1>
         <form onSubmit={this.saveNote} className={classes.form}>
           <TextField
             placeholder="title"
@@ -91,6 +172,11 @@ class NoteForm extends Component {
             maxLength="50"
             onChange={this.changeHandler}
             className={classes.formInputs}
+            InputProps={{
+              classes: {
+                input: classes.resize
+              }
+            }}
           />
           <TextField
             placeholder="Note"
@@ -103,11 +189,23 @@ class NoteForm extends Component {
             value={this.state.body}
             onChange={this.changeHandler}
             className={classes.formInputs}
+            InputProps={{
+              classes: {
+                input: classes.resize
+              }
+            }}
           />
-          <button type="submit">Save</button>
-          <button onClick={this.handleCancel}>Cancel</button>
+
+          <div className={classes.iconContainer}>
+            <button type="submit" className={classes.saveIcon}>
+              Save
+            </button>
+            <button onClick={this.handleCancel} className={classes.closeIcon}>
+              Cancel
+            </button>
+          </div>
         </form>
-      </div>
+      </Paper>
     );
   }
 }

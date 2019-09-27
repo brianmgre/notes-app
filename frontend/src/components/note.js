@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import NoteForm from "./noteForm";
+import Paper from "@material-ui/core/Paper";
+import withStyles from "@material-ui/core/styles/withStyles";
+import Icon from "@material-ui/core/Icon";
+import { styles } from "./noteForm";
 
 class Note extends Component {
   state = {
@@ -20,7 +24,7 @@ class Note extends Component {
 
   render() {
     const { edit } = this.state;
-    const { note } = this.props;
+    const { note, classes } = this.props;
     if (edit) {
       return (
         <div>
@@ -29,13 +33,20 @@ class Note extends Component {
       );
     } else {
       return (
-        <div>
-          <p onClick={this.toggleEdit}>Edit Note</p>
-          <button onClick={this.handleCancel}>back</button>
-          note
-          <p>{note.title}</p>
-          <p> {note.body}</p>
-        </div>
+        <Paper className={classes.formContainer}>
+          <Icon className={classes.backIcon} onClick={this.handleCancel}>
+            arrow_back
+          </Icon>
+          <h1 className={classes.formHeader}>Add Something Inspiring!</h1>
+          <div className={classes.form}>
+            <div onClick={this.toggleEdit} className={classes.editIcon}>
+              <Icon className={classes.editIcon}>edit</Icon>
+              <p>edit</p>
+            </div>
+            <h2 className={classes.formInputs}>{note.title}</h2>
+            <p className={classes.formInputs}> {note.body}</p>
+          </div>
+        </Paper>
       );
     }
   }
@@ -50,4 +61,4 @@ const mapStateToProps = ({ notes }, { match }) => {
   };
 };
 
-export default connect(mapStateToProps)(Note);
+export default connect(mapStateToProps)(withStyles(styles)(Note));

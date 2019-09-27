@@ -11,7 +11,6 @@ import NoteModal from "./noteModal";
 
 const styles = {
   root: {
-    border: "1px solid red",
     width: "100%",
     display: "flex",
     flexDirection: "column",
@@ -37,7 +36,8 @@ const styles = {
     fontWeight: "bold",
     width: "100%",
     textAlign: "center",
-    marginBottom: 30
+    marginBottom: 30,
+    borderBottom: "1px solid black"
   },
 
   link: {
@@ -54,8 +54,23 @@ const styles = {
     fontSize: 20,
     "&:hover": {
       cursor: "pointer",
-      color: "red"
+      color: "#fb8400"
     }
+  },
+  addIcon: {
+    fontSize: 30,
+    color: "white"
+  },
+
+  addNoteContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    "&:hover": {
+      cursor: "pointer"
+    },
+    margin: "20px 0px",
+    color: "white"
   }
 };
 
@@ -73,16 +88,13 @@ const AllNotes = props => {
 
   return (
     <div className={classes.root}>
-      <div>
-        <Icon id="add" className={classes.add}>
-          add_circle_outline
-        </Icon>
-        <p onClick={modalOpen}>add note</p>
+      <div onClick={modalOpen} className={classes.addNoteContainer}>
+        <Icon className={classes.addIcon}>add_circle_outline</Icon>
+        <h2>Add Note</h2>
       </div>
-      <h1>Leave a Note</h1>
-      <Grid container spacing={8} className={classes.gridContainer}>
+      <Grid container spacing={1} className={classes.gridContainer}>
         {notes.map(note => (
-          <Grid item key={note._id} xs={12} md={4} sm={4}>
+          <Grid item key={note._id} xs={12} md={6} sm={6} zeroMinWidth>
             <Paper className={classes.paper}>
               <Icon
                 // className="material-icons"
@@ -93,15 +105,15 @@ const AllNotes = props => {
               </Icon>
               <Link to={`notes/${note._id}`} className={classes.link}>
                 <h3 className={classes.noteTitle}>
-                  {note.title.length > 10
-                    ? note.title.substring(0, 10) + "..."
+                  {note.title.length > 20
+                    ? note.title.substring(0, 20) + "..."
                     : note.title}
                 </h3>
-                <p className={classes.notePar}>
-                  {note.body.length > 50
-                    ? note.body.substring(0, 50) + "..."
+                <h3 className={classes.notePar}>
+                  {note.body.length > 38
+                    ? note.body.substring(0, 38) + "..."
                     : note.body}
-                </p>
+                </h3>
               </Link>
             </Paper>
           </Grid>

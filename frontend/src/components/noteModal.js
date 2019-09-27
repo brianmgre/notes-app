@@ -12,7 +12,7 @@ const styles = {
     position: "absolute",
     width: "50%",
     right: "25%",
-    top: "30%",
+    top: "20%",
     display: "flex",
     justifyContent: "center"
   }
