@@ -6,6 +6,7 @@ import AllNotes from "./components/allNotes";
 import Note from "./components/note";
 import NoteForm from "./components/noteForm";
 import withStyles from "@material-ui/core/styles/withStyles";
+import Loader from "./components/loader";
 
 const styles = {
   root: {},
@@ -32,15 +33,12 @@ class App extends Component {
       <Router>
         <div className={classes.root}>
           <h1 className={classes.appTitle}>Leave a Note</h1>
-          {!loading ? (
-            "nope"
-          ) : (
-            <div className={classes.routeContainer}>
-              <Route exact path="/" component={AllNotes} />
-              <Route path="/notes/:id" component={Note} />
-              <Route path="/new-note" component={NoteForm} />
-            </div>
-          )}
+          {!loading ? <Loader /> : null}
+          <div className={classes.routeContainer}>
+            <Route exact path="/" component={AllNotes} />
+            <Route path="/notes/:id" component={Note} />
+            <Route path="/new-note" component={NoteForm} />
+          </div>
         </div>
       </Router>
     );

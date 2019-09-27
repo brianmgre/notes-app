@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { handleDeleteNote } from "../actions/notes";
 import { openModal } from "../actions/modal";
+import Loader from "./loader";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -75,7 +76,7 @@ const styles = {
 };
 
 const AllNotes = props => {
-  const { notes, classes, modal } = props;
+  const { notes, classes, modal, loader } = props;
 
   const clickHandler = note => {
     props.dispatch(handleDeleteNote(note));
@@ -91,6 +92,7 @@ const AllNotes = props => {
         <Icon className={classes.addIcon}>add_circle_outline</Icon>
         <h2>Add Note</h2>
       </div>
+      {loader ? <Loader /> : null}
       <Grid container spacing={1} className={classes.gridContainer}>
         {notes.map(note => (
           <Grid item key={note._id} xs={12} md={6} sm={6} zeroMinWidth>
@@ -123,7 +125,7 @@ const AllNotes = props => {
   );
 };
 
-const mapStateToProps = ({ notes, modal }) => {
+const mapStateToProps = ({ notes, modal, loader }) => {
   return {
     notes: notes,
     modal: modal

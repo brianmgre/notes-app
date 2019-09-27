@@ -1,4 +1,5 @@
 import axios from "axios";
+import { openLoader, closeLoader } from "./loader";
 
 export const ADD_NOTE = "ADD_NOTE";
 export const EDIT_NOTE = "EDIT_NOTE";
@@ -37,13 +38,16 @@ function dataRequest(notes) {
 
 export function handleAddNote(note) {
   return dispatch => {
+    dispatch(openLoader());
     return axios
       .post(`${url}/api/notes/add`, note)
       .then(res => {
+        dispatch(closeLoader());
         dispatch(addNote(res.data.savedNote));
       })
       .catch(err => {
-        alert("error");
+        dispatch(closeLoader());
+        alert("error fetching data");
       });
   };
 }
@@ -53,7 +57,7 @@ export function handleDeleteNote(note) {
     dispatch(deleteNote(note._id));
     return axios.delete(`${url}/api/notes/${note._id}`).catch(() => {
       dispatch(addNote(note));
-      alert("error");
+      alert("error deleting note");
     });
   };
 }
@@ -63,7 +67,7 @@ export function handleEditNote(note) {
     dispatch(editNote(note));
     return axios.put(`${url}/api/notes/${note._id}`, note).catch(() => {
       dispatch(editNote(note));
-      alert("error");
+      alert("error editing note");
     });
   };
 }
