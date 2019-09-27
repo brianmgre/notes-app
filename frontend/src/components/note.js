@@ -5,6 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Icon from "@material-ui/core/Icon";
 import { styles } from "./noteForm";
+import Loader from "../components/loader";
 
 class Note extends Component {
   state = {
@@ -24,40 +25,46 @@ class Note extends Component {
 
   render() {
     const { edit } = this.state;
-    const { note, classes } = this.props;
-    if (edit) {
-      return (
-        <div>
-          <NoteForm toggle={this.toggleEdit} />
-        </div>
-      );
+    const { note, classes, loader } = this.props;
+
+    if (loader) {
+      return <Loader />;
     } else {
-      return (
-        <Paper className={classes.formContainer}>
-          <Icon className={classes.backIcon} onClick={this.handleCancel}>
-            arrow_back
-          </Icon>
-          <h1 className={classes.formHeader}>Add Something Inspiring!</h1>
-          <div className={classes.form}>
-            <div onClick={this.toggleEdit} className={classes.editIcon}>
-              <Icon className={classes.editIcon}>edit</Icon>
-              <p>edit</p>
-            </div>
-            <h2 className={classes.formInputs}>{note.title}</h2>
-            <p className={classes.formInputs}> {note.body}</p>
+      if (edit) {
+        return (
+          <div>
+            <NoteForm toggle={this.toggleEdit} />
           </div>
-        </Paper>
-      );
+        );
+      } else {
+        return (
+          <Paper className={classes.formContainer}>
+            <Icon className={classes.backIcon} onClick={this.handleCancel}>
+              arrow_back
+            </Icon>
+            <h1 className={classes.formHeader}>Add Something Inspiring!</h1>
+            <div className={classes.form}>
+              <div onClick={this.toggleEdit} className={classes.editIcon}>
+                <Icon className={classes.editIcon}>edit</Icon>
+                <p>edit</p>
+              </div>
+              <h2 className={classes.formInputs}>{note.title}</h2>
+              <p className={classes.formInputs}> {note.body}</p>
+            </div>
+          </Paper>
+        );
+      }
     }
   }
 }
 
-const mapStateToProps = ({ notes }, { match }) => {
+const mapStateToProps = ({ notes, loader }, { match }) => {
   const { id } = match.params;
 
   const note = notes.find(note => id === note._id);
   return {
-    note: note
+    note: note,
+    loader: loader
   };
 };
 
