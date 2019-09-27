@@ -29,7 +29,7 @@ router.put("/notes/:id", async (req, res) => {
     const { title, body } = req.body;
     if (title && body) {
       const updatedNote = await db.editNote(req.body);
-      console.log(updatedNote);
+
       if (updatedNote.n === 1) {
         return res.status(201).json({ updatedNote });
       } else {

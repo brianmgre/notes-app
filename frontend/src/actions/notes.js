@@ -49,7 +49,6 @@ export function handleAddNote(note) {
 }
 
 export function handleDeleteNote(note) {
-  console.log("hit");
   return dispatch => {
     dispatch(deleteNote(note._id));
     return axios.delete(`${url}/api/notes/${note._id}`).catch(() => {
@@ -60,7 +59,6 @@ export function handleDeleteNote(note) {
 }
 
 export function handleEditNote(note) {
-  console.log("hit", note);
   return dispatch => {
     dispatch(editNote(note));
     return axios.put(`${url}/api/notes/${note._id}`, note).catch(() => {

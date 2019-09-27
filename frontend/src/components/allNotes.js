@@ -76,7 +76,6 @@ const styles = {
 
 const AllNotes = props => {
   const { notes, classes, modal } = props;
-  console.log(modal);
 
   const clickHandler = note => {
     props.dispatch(handleDeleteNote(note));
@@ -125,8 +124,6 @@ const AllNotes = props => {
 };
 
 const mapStateToProps = ({ notes, modal }) => {
-  console.log("modal", modal);
-
   return {
     notes: notes,
     modal: modal
