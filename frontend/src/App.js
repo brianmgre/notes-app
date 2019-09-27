@@ -8,14 +8,16 @@ import NoteForm from "./components/noteForm";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const styles = {
-  root: {
-    maxWidth: "1024px",
-    margin: "auto",
-    marginTop: "40px"
+  root: {},
+  appTitle: {
+    backgroundColor: "white",
+    color: "#4cb649",
+    padding: "20px 20px"
   },
   routeContainer: {
-    width: "100%",
-    margin: "0px 10px"
+    maxWidth: "1024px",
+    margin: "auto",
+    padding: "30px 0px"
   }
 };
 
@@ -29,6 +31,7 @@ class App extends Component {
     return (
       <Router>
         <div className={classes.root}>
+          <h1 className={classes.appTitle}>Leave a Note</h1>
           {!loading ? (
             "nope"
           ) : (
