@@ -29,7 +29,7 @@
 <ol>
 <li>Package manager: Yarn was used to build this project. </li>
 <li>Fork and clone repo</li>
-<li>Add a .env file at the root of each folder (same level as package.json). Add environment variables in each folder: Frontend, Backend</li>
+<li>Add a .env file at the root of each folder: Frontend and Backend (same level as package.json). Add environment variables in each .env.</li>
 <li>Run yarn install to install the necessary node_modules</li>
 <li>Once completed run yarn start to start the application. </li>
   </ol>
