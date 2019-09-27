@@ -11,7 +11,7 @@ const styles = {
   root: {},
   appTitle: {
     backgroundColor: "white",
-    color: "#4cb649",
+    color: "#3780c6",
     padding: "20px 20px"
   },
   routeContainer: {

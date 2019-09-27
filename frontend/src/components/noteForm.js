@@ -32,20 +32,20 @@ export const styles = {
     fontSize: 20,
     "&:hover": {
       cursor: "pointer",
-      color: "#4cb649"
+      color: "#3780c6"
     },
     textAlign: "end"
   },
 
   formHeader: {
-    color: "#4cb649"
+    color: "#3780c6"
   },
 
   backIcon: {
     fontSize: 29,
     "&:hover": {
       cursor: "pointer",
-      color: "#4cb649"
+      color: "#3780c6"
     },
     width: "100%",
     textAlign: "start"
@@ -57,10 +57,10 @@ export const styles = {
   },
   saveCloseIcon: {
     fontSize: 29,
-    color: "#4cb649",
+    color: "#3780c6",
     "&:hover": {
       cursor: "pointer",
-      color: "#4cb649"
+      color: "#3780c6"
     },
     width: "100%",
     textAlign: "center"
@@ -72,16 +72,16 @@ export const styles = {
   },
   saveIcon: {
     fontSize: 20,
-    color: "#4cb649",
+    color: "#3780c6",
     backgroundColor: "white",
     width: "152px",
     borderRadius: "5px",
-    border: "1px solid #4cb649",
+    border: "1px solid #3780c6",
     padding: 7,
     "&:hover": {
       cursor: "pointer",
       color: "white",
-      backgroundColor: "#4cb649",
+      backgroundColor: "#3780c6",
       border: "1px solid white"
     }
   },
