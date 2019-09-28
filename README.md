@@ -14,7 +14,7 @@
 <li>MongoDB</li>
 <li>Mongoose</li>
 
-<h3>Testing<h3>
+<h3>Testing</h3>
 <li>Jest</li>
 <li>React-Testing-library</li>
 <li>SuperTest</li>
@@ -26,7 +26,9 @@
 <h2>Back-end Variables:</h2>
 
 `ORIGN` location of client.
-`MONGO_URL` database.
+
+
+`MONGO_URL` link to your database.
 
 <h2>Using the Application:</h2>
 
