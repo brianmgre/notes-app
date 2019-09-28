@@ -6,8 +6,7 @@ module.exports = server => {
   server.use(express.json());
   server.use(
     cors({
-      origin: process.env.ORIGIN,
-      credentials: true
+      origin: process.env.ORIGIN
     })
   ),
     server.use("/api", router);
