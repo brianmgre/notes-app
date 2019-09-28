@@ -1,6 +1,4 @@
-// import { TOGGLE_MODAL } from "../actions/modal";
-
-import { CLOSE_MODAL, OPEN_MODAL } from "../actions/modal";
+import { OPEN_MODAL } from "../actions/modal";
 
 export default function modal(state = false, action) {
   switch (action.type) {

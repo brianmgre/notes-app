@@ -8,28 +8,28 @@ export const DATA_REQUEST = "DATA_REQUEST";
 
 const url = process.env.REACT_APP_API;
 
-function addNote(note) {
+export function addNote(note) {
   return {
     type: ADD_NOTE,
     note
   };
 }
 
-function editNote(note) {
+export function editNote(note) {
   return {
     type: EDIT_NOTE,
     note
   };
 }
 
-function deleteNote(id) {
+export function deleteNote(id) {
   return {
     type: DELETE_NOTE,
     id
   };
 }
 
-function dataRequest(notes) {
+export function dataRequest(notes) {
   return {
     type: DATA_REQUEST,
     notes

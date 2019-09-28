@@ -76,7 +76,7 @@ const styles = {
 };
 
 const AllNotes = props => {
-  const { notes, classes, modal, loader } = props;
+  const { notes, classes, loader } = props;
 
   const clickHandler = note => {
     props.dispatch(handleDeleteNote(note));

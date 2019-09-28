@@ -5,7 +5,6 @@
 <h3>Frontend</h3>
 <li>React</li>
 <li>Redux</li>
-<li>Thunk</li>
 <li>React Router</li>
 <li>Material-UI</li>
 
@@ -15,14 +14,19 @@
 <li>MongoDB</li>
 <li>Mongoose</li>
 
+<h3>Testing<h3>
+<li>Jest</li>
+<li>React-Testing-library</li>
+<li>SuperTest</li>
+
 <h2>Font-end Variables:</h2>
 
-<li>`REACT_APP_API` location of your server.</li>
+`REACT_APP_API` location of your server.
 
 <h2>Back-end Variables:</h2>
 
-<li>`ORIGIN` location of client.</li>
-<li>`MONGO_URL` database.</li>
+`ORIGN` location of client.
+`MONGO_URL` database.
 
 <h2>Using the Application:</h2>
 
