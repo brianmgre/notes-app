@@ -7,20 +7,26 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { Paper } from "@material-ui/core";
 import Icon from "@material-ui/core/Icon";
 
-export const styles = {
+export const styles = theme => ({
   formContainer: {
     display: "flex",
     flexDirection: "column",
     width: "100%",
     alignItems: "center",
-    padding: "50px"
+    padding: "50px",
+    [theme.breakpoints.down("sm")]: {
+      padding: 0
+    }
   },
 
   form: {
     display: "flex",
     flexDirection: "column",
     width: "80%",
-    padding: 50
+    padding: 50,
+    [theme.breakpoints.down("sm")]: {
+      width: "100%"
+    }
   },
 
   formInputs: {
@@ -101,7 +107,7 @@ export const styles = {
       border: "1px solid white"
     }
   }
-};
+});
 
 class NoteForm extends Component {
   state = {

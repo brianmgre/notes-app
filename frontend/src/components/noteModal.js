@@ -6,7 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import NoteForm from "./noteForm";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-const styles = {
+const styles = theme => ({
   modalContainer: {
     border: "1px solid purple",
     position: "absolute",
@@ -14,9 +14,14 @@ const styles = {
     right: "25%",
     top: "20%",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+      right: "5%",
+      top: "7%"
+    }
   }
-};
+});
 
 const NoteModal = props => {
   const { modal, classes } = props;
